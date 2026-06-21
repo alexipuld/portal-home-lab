@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乐鱼体育 · 让运动更有温度</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fde2d4 0%, #fbe9e0 50%, #f9dfd1 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .page-wrapper {
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Hero 区 — 卡片式大标题，暖白+阴影 */
+    .hero-card {
+      background: #fffffffa;
+      backdrop-filter: blur(2px);
+      border-radius: 40px;
+      padding: 3.5rem 2.8rem;
+      box-shadow: 0 20px 40px -12px rgba(180, 90, 50, 0.25);
+      text-align: center;
+      margin-bottom: 2.6rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .hero-card h1 {
+      font-size: 2.9rem;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      color: #4c2a1b;
+      line-height: 1.2;
+    }
+
+    .hero-card h1 span {
+      display: inline-block;
+      background: linear-gradient(135deg, #b86b4a, #9f5439);
+      color: white;
+      padding: 0 0.6rem;
+      border-radius: 60px;
+      font-size: 2.2rem;
+      line-height: 1.6;
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      color: #674b3a;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .hero-sub a {
+      color: #ae5d3c;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #eebda6;
+      transition: border-color 0.2s;
+    }
+
+    .hero-sub a:hover {
+      border-bottom-color: #9f5439;
+    }
+
+    /* 通用卡片 */
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      border-radius: 32px;
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 10px 24px -8px rgba(130, 70, 40, 0.12);
+      margin-bottom: 2rem;
+      transition: transform 0.1s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 14px 30px -10px rgba(150, 75, 45, 0.18);
+    }
+
+    .card h2 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #3b2318;
+      margin-bottom: 1rem;
+      border-left: 6px solid #c68465;
+      padding-left: 1.2rem;
+    }
+
+    .card p, .card li {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #3d2c22;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card li {
+      padding: 0.45rem 0 0.45rem 2rem;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="%23b86b4a"><circle cx="12" cy="12" r="6"/></svg>') left center no-repeat;
+      background-size: 14px;
+    }
+
+    /* 两栏布局——优势区+说明区可并排 */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 700px) {
+      .two-col-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .hero-card h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* FAQ 摘要卡片 */
+    .faq-card {
+      background: #fcf6f1;
+      border-radius: 32px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 16px rgba(140, 80, 50, 0.06);
+    }
+
+    .faq-card h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #3b2318;
+      margin-bottom: 1.4rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #e2cec2;
+      padding-bottom: 1rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      color: #4c2a1b;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .faq-question::before {
+      content: "▹";
+      color: #b86b4a;
+      font-size: 1.2rem;
+    }
+
+    .faq-answer {
+      color: #4e382b;
+      margin-top: 0.4rem;
+      padding-left: 1.6rem;
+      font-size: 0.98rem;
+    }
+
+    /* 底部链接 */
+    .footer-links {
+      background: #f7ede6;
+      border-radius: 40px;
+      padding: 1.8rem 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem 3rem;
+      box-shadow: 0 4px 12px rgba(120, 65, 35, 0.06);
+    }
+
+    .footer-links a {
+      color: #7f543d;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.28rem 0.8rem;
+      border-radius: 60px;
+      background: rgba(255, 245, 240, 0.6);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .footer-links a:hover {
+      background: #dbb7a4;
+      color: #2e1a10;
+    }
+
+    .footer-note {
+      margin-top: 1.8rem;
+      font-size: 0.9rem;
+      color: #6a4e3d;
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    .btn-link {
+      display: inline-block;
+      background: #e2c0ad;
+      color: #2f1d14;
+      padding: 0.5rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.1s;
+      border: 1px solid #d6aa91;
+    }
+
+    .btn-link:hover {
+      background: #dbb29b;
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- Hero 区 -->
+    <div class="hero-card">
+      <h1>
+        运动生活<br>
+        <span>乐鱼体育</span>
+      </h1>
+      <div class="hero-sub">
+        大汗淋漓也好，周末投篮也罢，<br>
+        和 <a href="https://portal-home-leyu.com.cn">乐鱼体育</a> 一起，把每一次心跳都变成快乐的节奏。
+      </div>
+    </div>
+
+    <!-- 两栏：优势 + 说明 -->
+    <div class="two-col-grid">
+      <!-- 优势区 -->
+      <div class="card">
+        <h2>为什么选它</h2>
+        <ul>
+          <li><strong>真实赛事氛围</strong> – 从街头到场馆，贴近日常运动节奏</li>
+          <li><strong>轻量互动设计</strong> – 不打扰、不堆砌，简单操作易上手</li>
+          <li><strong>陪伴感</strong> – 记录你的运动轨迹，提醒休息与补水</li>
+          <li><strong>社区温度</strong> – 和附近球友约场友谊赛，找回纯粹快乐</li>
+        </ul>
+      </div>
+
+      <!-- 说明区 -->
+      <div class="card">
+        <h2>它适合谁</h2>
+        <p>
+          不管你是刚接触运动的新手，还是周末喜欢跑一跑的老朋友，<a href="https://portal-home-leyu.com.cn" style="color: #ae5d3c; font-weight: 500; text-decoration: underline 1px dashed #c68465; text-underline-offset: 4px;">乐鱼体育</a> 都希望陪你找到舒服的节奏。
+        </p>
+        <p style="margin-top: 0.8rem;">
+          没有复杂的排行榜，没有强迫社交。只有运动本身，和一点点暖心的提醒。
+        </p>
+        <p style="margin-top: 0.8rem;">
+          就像傍晚在公园慢跑，耳机里放着喜欢的歌，舒服自在。
+        </p>
+      </div>
+    </div>
+
+    <!-- 场景式说明区（额外差异化） -->
+    <div class="card" style="background: #fcf4ee;">
+      <h2>日常使用场景</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; margin-top: 0.5rem;">
+        <div style="flex: 1 1 180px;">
+          <p style="font-weight: 600; color: #4c2a1b;">☀️ 晨间</p>
+          <p style="font-size: 0.98rem;">起床后花 10 分钟拉伸，唤醒身体。打开 <a href="https://portal-home-leyu.com.cn" style="color: #9f5439; text-decoration: none; border-bottom: 1px solid #c68465;">乐鱼体育</a> 看看今日运动推荐。</p>
+        </div>
+        <div style="flex: 1 1 180px;">
+          <p style="font-weight: 600; color: #4c2a1b;">🏀 午休</p>
+          <p style="font-size: 0.98rem;">和同事去楼下投篮，不用太多装备，出汗就行。</p>
+        </div>
+        <div style="flex: 1 1 180px;">
+          <p style="font-weight: 600; color: #4c2a1b;">🌆 傍晚</p>
+          <p style="font-size: 0.98rem;">约朋友慢跑，用最舒服的配速聊聊天，释放一天的压力。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-card">
+      <h3>常见小问题</h3>
+
+      <div class="faq-item">
+        <div class="faq-question">一定要有运动基础吗？</div>
+        <div class="faq-answer">不用的。我们从入门到进阶都有参考建议，关键是动起来就好。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">提供专业训练计划吗？</div>
+        <div class="faq-answer">更偏向陪伴和习惯养成，不是高强度教练模式。适合日常放松运动。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">需要很多设备吗？</div>
+        <div class="faq-answer">一部手机就够了。偶尔记录一下，剩下的交给身体去感受。</div>
+      </div>
+    </div>
+
+    <!-- 底部链接区域（圆角按钮感链接） -->
+    <div class="footer-links">
+      <a href="https://portal-home-leyu.com.cn" class="btn-link">乐鱼体育</a>
+      <a href="#">运动小贴士</a>
+      <a href="#">常见问题</a>
+      <a href="#">隐私说明</a>
+    </div>
+
+    <div class="footer-note">
+      保持轻松运动，乐在其中 · 本页面仅供展示用途
+    </div>
+
+  </div>
+</body>
+</html>
