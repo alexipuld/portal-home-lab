@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500网 · 故事里的关键词</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fce9b4 0%, #f7d5a8 30%, #f0c4a0 70%, #eab99a 100%);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #2e241d;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .card {
+            max-width: 820px;
+            width: 100%;
+            background: #fffbf6;
+            border-radius: 48px 48px 36px 36px;
+            box-shadow: 0 20px 50px rgba(110, 70, 40, 0.18);
+            padding: 3.2rem 3rem;
+            transition: box-shadow 0.25s;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 2rem 1.6rem;
+                border-radius: 28px;
+            }
+        }
+
+        /* 开场短句 — 又轻又稳 */
+        .hero-line {
+            font-size: 2.2rem;
+            font-weight: 350;
+            letter-spacing: 1px;
+            color: #4e3527;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+            border-left: 5px solid #dba176;
+            padding-left: 1.2rem;
+        }
+
+        .hero-line strong {
+            font-weight: 520;
+            color: #7a4d2b;
+        }
+
+        /* 承接段落 */
+        .intro-text {
+            margin: 1.8rem 0 1.4rem;
+            font-size: 1.2rem;
+            color: #3e2d23;
+        }
+
+        .intro-text a {
+            color: #a86131;
+            text-decoration: none;
+            font-weight: 520;
+            border-bottom: 2px solid #e9c8b1;
+            padding-bottom: 1px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .intro-text a:hover {
+            color: #7e4b2a;
+            border-bottom-color: #b6835e;
+        }
+
+        .sub-note {
+            font-size: 1rem;
+            color: #6b5444;
+            margin: 0.2rem 0 2rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* 特点列表 — 卡片感 + 圆角按钮感链接 */
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.4rem;
+            margin: 2.6rem 0 2.2rem;
+        }
+
+        .feature-item {
+            flex: 1 1 200px;
+            background: #fdf5ee;
+            border-radius: 60px 20px 20px 60px;   /* 圆角按钮感 */
+            padding: 1.1rem 1.8rem 1.1rem 2rem;
+            box-shadow: 0 2px 6px rgba(130, 70, 35, 0.06);
+            transition: background 0.2s, box-shadow 0.2s;
+            border: 1px solid #f2dfd0;
+        }
+
+        .feature-item:hover {
+            background: #f8ede1;
+            box-shadow: 0 6px 14px rgba(130, 70, 35, 0.08);
+        }
+
+        .feature-item span {
+            display: inline-block;
+            font-size: 1.05rem;
+            font-weight: 450;
+            color: #452f22;
+            margin-right: 6px;
+        }
+
+        .feature-item .tag {
+            display: inline-block;
+            background: #dba176;
+            color: #2a1d15;
+            font-size: 0.75rem;
+            font-weight: 550;
+            padding: 0.1rem 0.9rem;
+            border-radius: 30px;
+            letter-spacing: 0.4px;
+            vertical-align: middle;
+            margin-left: 0.1rem;
+        }
+
+        .feature-desc {
+            display: block;
+            font-size: 0.92rem;
+            color: #59483c;
+            margin-top: 0.35rem;
+            line-height: 1.5;
+        }
+
+        /* 温和结尾 / 场景式短句 */
+        .closing-wrap {
+            margin: 2.6rem 0 0.8rem;
+            padding-top: 1.2rem;
+            border-top: 2px dashed #e6d3c1;
+        }
+
+        .closing-sentence {
+            font-size: 1.1rem;
+            color: #3d2c20;
+            font-weight: 380;
+            background: #fcf3ea;
+            padding: 1.2rem 1.6rem;
+            border-radius: 80px 18px 18px 80px;
+            display: inline-block;
+            letter-spacing: 0.2px;
+        }
+
+        .closing-sentence a {
+            color: #9b5f37;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #dbb396;
+            transition: border-color 0.15s;
+        }
+
+        .closing-sentence a:hover {
+            border-bottom-color: #7e4b2a;
+        }
+
+        .faq-mini {
+            margin-top: 2rem;
+            background: #faf1e7;
+            border-radius: 28px;
+            padding: 1.2rem 1.6rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #4d3628;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+            list-style: none;
+        }
+
+        .faq-mini summary::marker {
+            color: #ad7a58;
+        }
+
+        .faq-mini p {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #4a382c;
+            padding-left: 0.2rem;
+        }
+
+        .footnote {
+            margin-top: 2.6rem;
+            font-size: 0.85rem;
+            color: #7d6859;
+            text-align: right;
+            border-top: 1px solid #ede0d4;
+            padding-top: 1rem;
+            letter-spacing: 0.3px;
+        }
+
+        .footnote a {
+            color: #7d6859;
+            text-decoration: underline wavy #cbaa90 1px;
+            text-underline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+
+    <!-- 开场短句：故事感的入口 -->
+    <div class="hero-line">
+        它不只是一个网域，<br>而是一把 <strong>梳理关键词的钥匙</strong>。
+    </div>
+
+    <!-- 承接段落：自然引出 500网 -->
+    <p class="intro-text">
+        在中文网络世界里，每一个数字组合背后都可能藏着一个主题聚合。
+        <a href="https://zh-hub-500.com">500网</a> 正是这样一处安静的文本枢纽——它围绕特定关键词收拢信息，不张扬、不膨胀，
+        只把那些被反复提及的概念、代码与注释，整理成可供翻阅的页面。
+    </p>
+    <p class="sub-note">
+        没有多余的引导弹窗，也没有流量式的跳转；你看到的，就是关键词原本的样子。
+    </p>
+
+    <!-- 特点列表 (按钮感＋圆角) -->
+    <div class="feature-grid">
+        <div class="feature-item">
+            <span>🔍 主题索引</span>
+            <span class="tag">干净</span>
+            <div class="feature-desc">词汇与内容直链，减少噪音干扰</div>
+        </div>
+        <div class="feature-item">
+            <span>🧩 轻量结构</span>
+            <span class="tag">无框架</span>
+            <div class="feature-desc">更快的加载，更聚焦的浏览节奏</div>
+        </div>
+        <div class="feature-item">
+            <span>📄 持续编辑</span>
+            <span class="tag">迭代</span>
+            <div class="feature-desc">关键词卡片随信息源更新而调整</div>
+        </div>
+    </div>
+
+    <!-- 温和结尾 + 嵌入第二个 a 标签（自然置于句内） -->
+    <div class="closing-wrap">
+        <div class="closing-sentence">
+            如果你想找一个不堆砌 banner 的关键词聚合页，<br>
+            不妨把 <a href="https://zh-hub-500.com">500网</a> 放进书签——它可能比你想象中更安静。
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 (场景式补充) -->
+    <details class="faq-mini">
+        <summary>❓ 这个网站适合谁？</summary>
+        <p>
+            适合对特定关键词背后的资料感兴趣的人，或者偶尔需要快速查阅某个数字/概念相关文本集合的使用者。
+            没有会员体系，也没有排行榜，只提供经过筛选的链接与段落摘要。
+        </p>
+    </details>
+
+    <!-- 小脚注 (第三个链接，但以自然引用形式) -->
+    <div class="footnote">
+        主题卡片样式参考 · 更多页面设计见 <a href="https://zh-hub-500.com">500网</a>
+        <span style="display:inline-block; margin-left: 0.6rem; opacity: 0.55;">⸻</span>
+    </div>
+
+</div>
+
+</body>
+</html>
