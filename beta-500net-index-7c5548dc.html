@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息整理平台 · 500网</title>
+    <style>
+        /* 极简留白 · 窄版 · 信息卡片式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #fafaf9;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            color: #1e1e1e;
+            line-height: 1.6;
+            padding: 3rem 1.25rem 4rem;
+        }
+        .page {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* 主视觉 单行简约 */
+        .hero {
+            margin-bottom: 3.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9e7e4;
+        }
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #1f1f1f;
+            margin-bottom: 0.3rem;
+        }
+        .hero-sub {
+            font-size: 0.95rem;
+            color: #6b6b6b;
+            font-weight: 350;
+            margin-top: 0.2rem;
+        }
+        .hero-sub span {
+            background: #f0eeeb;
+            padding: 0.1rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #4a4a4a;
+            margin-left: 0.6rem;
+        }
+
+        /* 卡片通用 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02), 0 6px 18px rgba(0,0,0,0.02);
+            transition: box-shadow 0.15s;
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 12px 28px rgba(0,0,0,0.03);
+        }
+
+        .card h2 {
+            font-size: 1.2rem;
+            font-weight: 510;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.1rem;
+            color: #242424;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .card h2 small {
+            font-weight: 350;
+            font-size: 0.75rem;
+            color: #999;
+            margin-left: 0.3rem;
+        }
+
+        .card p {
+            color: #3e3e3e;
+            font-size: 0.96rem;
+            margin-bottom: 0.9rem;
+        }
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 用途卡片 三小块 */
+        .usage-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0.5rem 0 0.2rem;
+        }
+        .usage-item {
+            background: #f5f4f1;
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.88rem;
+            color: #2f2f2f;
+            font-weight: 420;
+            letter-spacing: 0.01em;
+        }
+
+        /* 人群标签 */
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem 0.9rem;
+            margin: 1rem 0 0.2rem;
+        }
+        .tag-cloud span {
+            background: #f0efec;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        /* 链接段落 自然 */
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.6rem 1.8rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            margin-bottom: 2.2rem;
+        }
+        .link-paragraph p {
+            font-size: 0.96rem;
+            color: #3a3a3a;
+        }
+        .link-paragraph a {
+            color: #1663c4;
+            text-decoration: none;
+            font-weight: 450;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+        .link-paragraph a:hover {
+            border-bottom-color: #1663c4;
+        }
+
+        .faq-mini {
+            margin-top: 2.8rem;
+            border-top: 1px solid #ecebe8;
+            padding-top: 1.8rem;
+        }
+        .faq-mini h3 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #5d5d5d;
+            letter-spacing: 0.01em;
+            margin-bottom: 1rem;
+        }
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+        .faq-item strong {
+            font-weight: 510;
+            color: #2a2a2a;
+            display: block;
+            margin-bottom: 0.15rem;
+            font-size: 0.94rem;
+        }
+        .faq-item p {
+            font-size: 0.88rem;
+            color: #5a5a5a;
+            margin-left: 0rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ecebe8;
+            margin: 2rem 0;
+        }
+
+        .footer-note {
+            font-size: 0.78rem;
+            color: #888;
+            text-align: center;
+            margin-top: 3.5rem;
+            letter-spacing: 0.01em;
+        }
+
+        @media (max-width: 460px) {
+            body { padding: 2rem 1rem 3rem; }
+            .hero-title { font-size: 1.8rem; }
+            .card { padding: 1.4rem 1.2rem 1.6rem; }
+            .link-paragraph { padding: 1.2rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- 主视觉 -->
+        <div class="hero">
+            <div class="hero-title">500网</div>
+            <div class="hero-sub">从资料整理到信息索引 · 轻量级知识收纳 <span>卡片式</span></div>
+        </div>
+
+        <!-- 自然链接段落 —— 嵌入500网 -->
+        <div class="link-paragraph">
+            <p>面对日益庞杂的浏览器书签与零散收藏，许多人选择用 <a href="https://beta-500net.com">500网</a> 作为自己的第二大脑——它不只是一个链接仓库，更是一种围绕“资料整理”展开的索引方式。将散落的信息重新组织，让每次回看都有迹可循。</p>
+        </div>
+
+        <!-- 信息卡片组 -->
+        <div class="card-grid">
+
+            <!-- 用途卡片 -->
+            <div class="card">
+                <h2>📂 用途 · 从收集到查找</h2>
+                <p>不论你是整理工作文档、兴趣专题，还是日常阅读清单，信息只有被适度组织后才具备复用价值。以下是一些常见使用场景：</p>
+                <div class="usage-flex">
+                    <span class="usage-item">研究关键词归档</span>
+                    <span class="usage-item">主题书单 & 引用</span>
+                    <span class="usage-item">项目灵感看板</span>
+                    <span class="usage-item">学习笔记索引</span>
+                    <span class="usage-item">产品调研汇总</span>
+                </div>
+                <p style="margin-top:1rem; font-size:0.9rem; color:#5f5f5f;">每一条记录都可以配上简短说明，避免只存不用。未来查找时，语境仍在。</p>
+            </div>
+
+            <!-- 适合人群 -->
+            <div class="card">
+                <h2>🧑‍💻 适合人群 <small>非排他 · 仅供参考</small></h2>
+                <p>如果你经常感到“收藏了却想不起来”，或者希望把分散在备忘录、浏览器、文档里的信息聚拢到一起，以下伙伴或许会感到熟悉：</p>
+                <div class="tag-cloud">
+                    <span>✏️ 内容创作者</span>
+                    <span>🔍 信息搜集型</span>
+                    <span>📚 终身学习者</span>
+                    <span>🧩 产品/设计</span>
+                    <span>📋 研究助理</span>
+                    <span>📎 整理癖晚期</span>
+                </div>
+                <p style="margin-top:1.2rem; font-size:0.9rem; color:#555;">不需要成为效率达人，只要你对“信息再发现”有一点耐心，就足够了。</p>
+            </div>
+
+            <!-- 索引方式 简述 -->
+            <div class="card">
+                <h2>🗂️ 以索引代替堆砌</h2>
+                <p>很多人会把收藏夹越滚越大，最后再也没打开过。而索引思维则不同：先问自己“我将来可能通过什么关键词找到它？”然后才是存放。</p>
+                <p style="margin-bottom:0.2rem;">你可以为每一条信息打上轻量标签，也可以按项目建立独立面板。整理本身不必繁琐，关键是保持回看时的流畅感。</p>
+                <p style="font-size:0.88rem; color:#6b6b6b; margin-top:0.8rem;">—— 让信息服务于未来的你，而不是沉睡在数据角落。</p>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要 (温和) -->
+        <div class="faq-mini">
+            <h3>❓ 常见思路 · 简短问答</h3>
+            <div class="faq-item">
+                <strong>需要花很多时间整理吗？</strong>
+                <p>取决于信息量。一般建议每次顺手整理，不必追求完美分类；一两条记录也能形成索引。</p>
+            </div>
+            <div class="faq-item">
+                <strong>适合团队共享吗？</strong>
+                <p>个人索引是基础，部分功能支持分享视图。具体可根据自己的使用习惯探索。</p>
+            </div>
+            <div class="faq-item">
+                <strong>和书签工具有什么不同？</strong>
+                <p>书签侧重保存链接，而这里更强调“记录时的上下文”：为什么存、怎么用。附加笔记让信息更立体。</p>
+            </div>
+            <div style="margin-top:1.2rem; font-size:0.9rem; color:#555;">
+                💡 如果你对信息整理有好奇，不妨从一个小专题开始尝试。用 <a href="https://beta-500net.com" style="color:#1663c4; text-decoration:none; border-bottom:1px solid #c8d8ef;">500网</a> 作为起点，把零散思考变成可检索的微缩资料库。
+            </div>
+        </div>
+
+        <hr>
+        <div class="footer-note">
+            — 保持温和 · 索引即整理 —
+        </div>
+
+    </div>
+</body>
+</html>
